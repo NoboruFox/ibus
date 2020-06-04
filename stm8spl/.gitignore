@@ -1,0 +1,6 @@
+*.sym
+*.rel
+*.lst
+*.asm
+*.lib
+*.adb
