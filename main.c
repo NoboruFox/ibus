@@ -1,6 +1,5 @@
 #include <stm8s.h>
 
-
 void setup_clock()
 {
   CLK_DeInit();
@@ -9,13 +8,22 @@ void setup_clock()
                         CLK_CURRENTCLOCKSTATE_DISABLE);
 }
 
-
+void setup_gpio()
+{
+    GPIO_Init(GPIOA, GPIO_PIN_3, GPIO_MODE_OUT_PP_LOW_SLOW);
+}
 
 void main()
 {
+  int i = 0;
   setup_clock();
 
-  while(1) {
-  }
+  setup_gpio();
 
+  while(1) {
+      GPIO_WriteHigh(GPIOA, GPIO_PIN_3);
+      for (i=0; i < 10000; i++){}
+      GPIO_WriteLow(GPIOA, GPIO_PIN_3);
+      for (i=0; i < 10000; i++){}
+  }
 }
